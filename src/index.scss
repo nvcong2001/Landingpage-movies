@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  padding: 0;
+}
+
+@layer base {
+  body {
+    @apply bg-[#252328] font-sans px-5 text-white;
+  }
+}
+// 4d3e54
+
+@layer components {
+  .container {
+    max-width: 1280px;
+    @apply mx-auto;
+  }
+
+  .movie-list .swiper-slide {
+    width: 250px;
+    height: auto;
+  }
+
+  .movie-card {
+    height: 100%;
+  }
+  .movie-scroll {
+    width: 250px;
+  }
+}
+
+.skeleton {
+  background-color: #eee;
+  background-image: linear-gradient(
+    110deg,
+    #ececec 10%,
+    #f5f5f5 18%,
+    #ececec 33%
+  );
+  background-size: 200% 100%;
+  animation: 1.5s shine linear infinite;
+}
+
+@keyframes shine {
+  to {
+    background-position-x: -200%;
+  }
+}
+
+.scroll-header {
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
