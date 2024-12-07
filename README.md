@@ -1,8 +1,47 @@
-# React + Vite
+## TimeLine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- 14 days (18th Apr 2024 - 2th May 2024)
 
-Currently, two official plugins are available:
+## TeamSize
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 1 developer
+
+## Technologies
+
+- ReactJS
+- SASS
+- TailWindCSS
+
+## Libs
+
+- SWR - React Hooks for Data Fetching [here](https://swr.vercel.app/)
+- TailwindCSS - A library for tailwind's css in ReactJS [here](https://styled-components.com/)
+
+## Editor
+
+- [visual Studio Code](https://code.visualstudio.com/)
+
+## Directory structure
+
+```markdown
+.
+```
+
+## GuideLine
+
+- Clone project: `https://github.com/PhanThanhDat16/Landingpage-movies`
+
+### How to run app
+
+- `npm run dev`
+
+## Feature
+
+- Load More 
+- Filter movies, tv show, actors
+
+## Question
+
+## Author
+
+- Phan Dat
