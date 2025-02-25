@@ -1,11 +1,12 @@
-import React from "react";
 import MovieCard from "./MovieCard";
 import useSWR from "swr";
-import { API, apiKey, fetcher } from "../../configAPI/configAPI";
+import { API, fetcher } from "../../configAPI/configAPI";
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/scss";
+// import "swiper/scss";
+import "swiper/swiper-bundle.css";
 import { v4 } from "uuid";
 import LoadingSkeleton from "../loading/LoadingSkeleton";
+
 const itemPerPage = 20;
 const MovieList = ({ type = "now_playing" }) => {
   const { data, error } = useSWR(API.getMovieList(type), fetcher);

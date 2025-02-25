@@ -1,4 +1,3 @@
-import React from "react";
 import Logo from "../components/logo/Logo";
 import { NavLink } from "react-router-dom";
 
@@ -6,12 +5,12 @@ const Footer = () => {
   return (
     <>
       <div className="bg-[linear-gradient(to_right_bottom,#47001c,#971132)] w-full p-5">
-        <div className="container flex items-center justify-between ">
-          <div>
-            <h1 className="text-xl italic font-bold text-transparent bg-gradient-to-b from-primary to-yellow-500 bg-clip-text">
+        <div className="container flex flex-col items-center justify-between md:flex-row ">
+          <div className="mb-3 md:mb-0">
+            <h1 className="text-xl italic font-bold text-center text-transparent md:text-left bg-gradient-to-b from-primary to-yellow-500 bg-clip-text">
               TRIAL START FIRST 30 DAYS.
             </h1>
-            <span className="text-base italic">
+            <span className="inline-block text-base italic text-center md:text-left">
               Enter your email to create or restart your membership.
             </span>
           </div>
@@ -31,17 +30,19 @@ const Footer = () => {
       <div className="w-full py-10 bg-black/30">
         <div className="container ">
           <div className="flex flex-col gap-5">
-            <div className="flex justify-between gap-2">
-              <Logo className="mb-0"></Logo>
-              <div className="flex gap-4">
+            <div className="flex flex-col justify-between gap-2 md:flex-row">
+              <div className="hidden md:block">
+                <Logo className="mb-0"></Logo>
+              </div>
+              <div className="flex justify-center gap-4">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/tv-shows">TV Shows</NavLink>
                 <NavLink to="/movies">Movies</NavLink>
                 <NavLink to="/actors">Actors</NavLink>
               </div>
             </div>
-            <div className="flex items-center justify-between">
-              <p className="text-sm">
+            <div className="flex flex-col items-center justify-between md:flex-row">
+              <p className="mb-3 text-sm md:mb-0">
                 2024 Movie World All Rights Reserved by{" "}
                 <span className="text-primary">Phan Dat</span>
               </p>

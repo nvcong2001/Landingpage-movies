@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { API, fetcher } from "../configAPI/configAPI";
 import Button from "../components/button/Button";
 import useDebounceQuery from "../hooks/useDebounceQuery";
