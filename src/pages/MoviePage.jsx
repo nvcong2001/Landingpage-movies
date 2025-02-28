@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { API, fetcher } from "../configAPI/configAPI";
 import MovieCard from "../components/movie/MovieCard";
 import Button from "../components/button/Button";
-import SearchMovies from "../components/search/SearchMovies";
 import useSWRInfinite from "swr/infinite";
 import useDebounceQuery from "../hooks/useDebounceQuery";
 import LoadingSkeleton from "../components/loading/LoadingSkeleton";
@@ -39,6 +38,19 @@ const MoviePage = () => {
     }
   }, [pageDefault, debounceValue]);
 
+  useEffect(() => {
+    const handleClickInput = (e) => {
+      if (e.target.matches(".input-search")) {
+        e.target.focus();
+      } else {
+        const input = document.querySelector(".input-search");
+        if (input) input.blur();
+      }
+    };
+    document.addEventListener("click", handleClickInput);
+    return () => document.removeEventListener("click", handleClickInput);
+  }, []);
+
   return (
     <>
       <div className="container pb-9">
@@ -46,7 +58,7 @@ const MoviePage = () => {
           <div className="w-full p-4 bg-[#2f3032]">
             <input
               type="text"
-              className="w-full outline-none bg-transparent placeholder:text-[15px]"
+              className="input-search w-full outline-none bg-transparent placeholder:text-[15px]"
               placeholder="Type here to search..."
               value={query}
               onChange={handleChangeQuery}

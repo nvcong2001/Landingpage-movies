@@ -1,5 +1,3 @@
-import React from "react";
-
 const SearchMovies = () => {
   return (
     <div className="flex items-center mt-10 mb-10 ">
