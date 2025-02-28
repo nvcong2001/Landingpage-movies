@@ -38,7 +38,6 @@ const Main = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
-  console.log(showSidebar);
 
   return (
     <>

@@ -1,5 +1,3 @@
-import React from "react";
-import MovieCard from "../movie/MovieCard";
 const LoadingSkeleton = () => {
   return (
     <>
