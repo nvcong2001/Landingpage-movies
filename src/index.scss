@@ -73,3 +73,24 @@ body {
     transform: translateY(-10px);
   }
 }
+
+.swiper-banner {
+  height: 530px;
+  overflow: hidden;
+}
+
+.banner-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(0, 0, 0, 1) 80%
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
