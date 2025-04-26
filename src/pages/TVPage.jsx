@@ -6,6 +6,7 @@ import useDebounceQuery from "../hooks/useDebounceQuery";
 import useSWRInfinite from "swr/infinite";
 import LoadingSkeleton from "../components/loading/LoadingSkeleton";
 import { v4 } from "uuid";
+
 const itemPerPage = 20;
 const TVPage = () => {
   const [query, setQuery] = useState("");

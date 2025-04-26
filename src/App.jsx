@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import Banner from "./components/banner/Banner";
+// import Banner from "./components/banner/Banner";
 import Main from "./layouts/Main";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -9,8 +9,7 @@ const TVPage = lazy(() => import("./pages/TVPage"));
 const TVDetail = lazy(() => import("./pages/TVDetail"));
 const MoviePage = lazy(() => import("./pages/MoviePage"));
 const MoviePageDetail = lazy(() => import("./pages/MoviePageDetail"));
-const ActorsPage = lazy(() => import("./pages/ActorsPage"));
-const ActorDetail = lazy(() => import("./pages/ActorDetail"));
+const MovieNewPageDetail = lazy(() => import("./pages/MovieNewPageDetail"));
 
 const App = () => {
   return (
@@ -21,7 +20,7 @@ const App = () => {
             path="/"
             element={
               <>
-                <Banner></Banner>
+                {/* <Banner></Banner> */}
                 <HomePage></HomePage>
               </>
             }
@@ -34,11 +33,9 @@ const App = () => {
             path="/movie/detail/:id"
             element={<MoviePageDetail></MoviePageDetail>}
           ></Route>
-
-          <Route path="/actors" element={<ActorsPage></ActorsPage>}></Route>
           <Route
-            path="/actors/detail/:id"
-            element={<ActorDetail></ActorDetail>}
+            path="/phim/detail/:id"
+            element={<MovieNewPageDetail></MovieNewPageDetail>}
           ></Route>
         </Route>
         <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>

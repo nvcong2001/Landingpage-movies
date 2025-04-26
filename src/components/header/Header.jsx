@@ -1,63 +1,56 @@
-import Title from "./Title";
 import { NavLink } from "react-router-dom";
+import Logo from "../logo/Logo";
 
-const SidebarMenu = () => {
+const Header = () => {
   return (
-    <>
-      <Title>MENU</Title>
-      <div className="flex flex-col gap-[20px] text-base font-semibold p-3">
+    <div className="h-[75px] flex items-center bg-black fixed top-0 left-0 right-0 z-[100] border-b-2 border-[#363437] bg-gradient-to-r from-[#181818] to-[#181818]/70 px-5 py-5">
+      <Logo className="!mb-0" />
+      <div className="flex pl-8 gap-[20px] text-base font-semibold p-3">
         <NavLink
           to="/"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
-          <i className="pr-3 text-lg bx bx-home-alt-2"></i>
           Home
         </NavLink>
         <NavLink
           to="/tv"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
-          <i className="pr-3 text-lg bx bx-tv"></i>
           TV Shows
         </NavLink>
-        <NavLink
+        {/* <NavLink
           to="/movie"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
-          <i className="pr-3 text-lg bx bx-movie"></i>
           Movies
-        </NavLink>
-        <NavLink
+        </NavLink> */}
+        {/* <NavLink
           to="/actors"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
-          <i className="pr-3 text-lg bx bx-user"></i>
           Actors
-        </NavLink>
+        </NavLink> */}
         <NavLink
           to="/actors"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
-          <i className="pr-3 text-lg bx bx-user"></i>
           Phim bộ
         </NavLink>
         <NavLink
           to="/actors"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
-          <i className="pr-3 text-lg bx bx-user"></i>
           Phim lẻ
         </NavLink>
         <NavLink
           to="/actors"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
-          <i className="pr-3 text-lg bx bx-user"></i>
           Hoạt hình
         </NavLink>
       </div>
-    </>
+    </div>
   );
 };
 
-export default SidebarMenu;
+export default Header;
