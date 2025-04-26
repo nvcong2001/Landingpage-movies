@@ -22,22 +22,22 @@ const Main = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      e.preventDefault();
-      if (
-        !sidebarRef.current.contains(e.target) &&
-        !e.target.matches(".open-sidebar")
-      ) {
-        setShowSidebar(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const handleClickOutside = (e) => {
+  //     e.preventDefault();
+  //     if (
+  //       !sidebarRef.current.contains(e.target) &&
+  //       !e.target.matches(".open-sidebar")
+  //     ) {
+  //       setShowSidebar(false);
+  //     }
+  //   };
+// 
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <>

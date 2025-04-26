@@ -24,26 +24,20 @@ const Header = () => {
         >
           Movies
         </NavLink> */}
-        {/* <NavLink
-          to="/actors"
-          className={({ isActive }) => (isActive ? "text-primary" : "")}
-        >
-          Actors
-        </NavLink> */}
         <NavLink
-          to="/actors"
+          to="/phim-bo"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
           Phim bộ
         </NavLink>
         <NavLink
-          to="/actors"
+          to="/phim-le"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
           Phim lẻ
         </NavLink>
         <NavLink
-          to="/actors"
+          to="/hoat-hinh"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
           Hoạt hình
