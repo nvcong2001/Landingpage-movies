@@ -13,7 +13,7 @@ const Header = () => {
           Home
         </NavLink>
         <NavLink
-          to="/tv"
+          to="/tv-shows"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
           TV Shows

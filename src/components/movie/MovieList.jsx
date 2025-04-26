@@ -15,7 +15,7 @@ const itemPerPage = 20;
 const MovieList = ({ type = "v1" }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-
+  console.log(movies);
   const fetchMovieUpdate = async () => {
     setIsLoading(true);
     try {
