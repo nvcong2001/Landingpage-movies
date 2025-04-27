@@ -5,7 +5,7 @@ const MovieCard = ({ item }) => {
     <div className="flex flex-col p-3 rounded-lg movie-card bg-[rgb(47,48,50)]  ">
       <img
         src={item.poster_url}
-        className="h-[250px] object-cover w-full rounded-lg mb-5"
+        className="h-[250px] object-cover w-full rounded-lg mb-5 flex-shrink-0"
         alt=""
       />
       <div className="flex flex-col h-full">
@@ -19,7 +19,7 @@ const MovieCard = ({ item }) => {
             <i className="text-yellow-500 bx bxs-star"></i>
           </div>
         </div>
-        <Button to={`/phim/detail/${item.id}`}>Xem ngay</Button>
+        <Button to={`/phim/${item.slug}`}>Xem ngay</Button>
       </div>
     </div>
   );

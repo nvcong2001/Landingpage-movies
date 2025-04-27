@@ -1,14 +1,35 @@
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import useSWR from "swr";
 import { API, fetcher } from "../configAPI/configAPI";
 import MovieCardTVSM from "../components/movie/MovieCardTVSM";
+// import { useEffect, useState } from "react";
+// import { movieAPI } from "../configAPI/movie";
 
 const MoviePageDetail = () => {
+  // const location = useLocation();
+  // const [isLoading, setIsLoading] = useState(false);
+
+  // const fetchMovieDetail = async () => {
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await movieAPI(location.pathname);
+  //     console.log(response);
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
   const { id } = useParams();
-  const { data, error } = useSWR(API.getMovieDetail(id), fetcher);
+  const { data } = useSWR(API.getMovieDetail(id), fetcher);
+
   if (!data) return null;
-  const { title, genres, backdrop_path, poster_path, overview, homepage } =
-    data;
+
+  const { title, genres, backdrop_path, poster_path, overview } = data;
+
+  // useEffect(() => {
+  //   fetchMovieDetail();
+  // }, []);
 
   return (
     <div className="my-20">
@@ -62,7 +83,7 @@ const MoviePageDetail = () => {
 
 function MovieMeta({ type }) {
   const { id } = useParams();
-  const { data, error } = useSWR(API.getMovieMeta(id, type), fetcher);
+  const { data } = useSWR(API.getMovieMeta(id, type), fetcher);
   if (!data) return null;
   if (type === "credits") {
     const { cast } = data;

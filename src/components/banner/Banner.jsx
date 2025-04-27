@@ -31,7 +31,9 @@ const Banner = () => {
                     Lượt đánh giá:
                     <span className="text-yellow-400">
                       <i className="ml-2 mr-1 text-yellow-500 bx bxs-star"></i>
-                      {Number(item.vote_average).toFixed(2)}
+                      <span className="text-gray-400">
+                        {Number(item.vote_average).toFixed(2)}
+                      </span>
                     </span>
                   </span>
 

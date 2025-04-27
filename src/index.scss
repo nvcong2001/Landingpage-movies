@@ -94,3 +94,40 @@ body {
   pointer-events: none;
   z-index: 1000;
 }
+
+.text-twoLine {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.text-fiveLine {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.scroll-box {
+  padding-right: 8px;
+}
+
+.scroll-box::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scroll-box::-webkit-scrollbar-track {
+  background: #52525293;
+}
+
+.scroll-box::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.scroll-box::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
