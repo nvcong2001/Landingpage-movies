@@ -15,7 +15,6 @@ const itemPerPage = 20;
 const MovieList = ({ type = "v1" }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [movies, setMovies] = useState([]);
-  console.log(movies);
   const fetchMovieUpdate = async () => {
     setIsLoading(true);
     try {
@@ -52,7 +51,7 @@ const MovieList = ({ type = "v1" }) => {
         {!isLoading &&
           movies.length > 0 &&
           movies.map((item) => (
-            <SwiperSlide key={item.id}>
+            <SwiperSlide key={item.id + v4()}>
               <MovieCard item={item}></MovieCard>
             </SwiperSlide>
           ))}

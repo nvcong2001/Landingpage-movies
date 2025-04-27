@@ -8,7 +8,7 @@ const Main = () => {
   const location = useLocation();
   const [visible, setVisible] = useState(false);
   const [showSidebar, setShowSidebar] = useState(false);
-  const sidebarRef = useRef(null);
+  // const sidebarRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,22 +22,22 @@ const Main = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      e.preventDefault();
-      if (
-        !sidebarRef.current.contains(e.target) &&
-        !e.target.matches(".open-sidebar")
-      ) {
-        setShowSidebar(false);
-      }
-    };
+  // useEffect(() => {
+  //   const handleClickOutside = (e) => {
+  //     e.preventDefault();
+  //     if (
+  //       !sidebarRef.current.contains(e.target) &&
+  //       !e.target.matches(".open-sidebar")
+  //     ) {
+  //       setShowSidebar(false);
+  //     }
+  //   };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
 
   return (
     <>
