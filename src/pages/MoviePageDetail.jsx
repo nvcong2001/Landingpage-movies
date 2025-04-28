@@ -1,7 +1,9 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useSWR from "swr";
 import { API, fetcher } from "../configAPI/configAPI";
-import MovieCardTVSM from "../components/movie/MovieCardTVSM";
+import { useEffect, useState } from "react";
+import { newUpdatev2API } from "../configAPI/newUpdate";
+import MovieCardFilm from "../components/movie/MovieCardFilm";
 // import { useEffect, useState } from "react";
 // import { movieAPI } from "../configAPI/movie";
 
@@ -64,7 +66,7 @@ const MoviePageDetail = () => {
           genres.map((item) => (
             <span
               key={item.id}
-              className="px-4 py-2 border rounded border-primary text-primary"
+              className="px-4 py-2 font-medium border rounded border-primary text-primary"
             >
               {item.name}
             </span>
@@ -84,7 +86,26 @@ const MoviePageDetail = () => {
 function MovieMeta({ type }) {
   const { id } = useParams();
   const { data } = useSWR(API.getMovieMeta(id, type), fetcher);
+  const [isLoading, setIsLoading] = useState(true);
+  const [movies, setMovies] = useState([]);
+  const fetchMovieUpdate = async () => {
+    setIsLoading(true);
+    try {
+      const response = await newUpdatev2API();
+      setMovies(response.data.items);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovieUpdate();
+  }, []);
+
   if (!data) return null;
+
   if (type === "credits") {
     const { cast } = data;
     return (
@@ -137,17 +158,12 @@ function MovieMeta({ type }) {
     }
 
     if (type === "similar") {
-      const { results } = data;
       return (
         <div className="w-full">
-          <div className="flex py-4 overflow-y-auto gap-x-5">
-            {results.length > 0 &&
-              results.map((item) => (
-                <MovieCardTVSM
-                  item={item}
-                  key={item.id}
-                  check="movies"
-                ></MovieCardTVSM>
+          <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
+            {movies.length > 0 &&
+              movies.map((item) => (
+                <MovieCardFilm item={item} key={item.id}></MovieCardFilm>
               ))}
           </div>
         </div>
