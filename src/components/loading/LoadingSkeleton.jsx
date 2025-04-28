@@ -1,7 +1,9 @@
-const LoadingSkeleton = () => {
+const LoadingSkeleton = ({ className }) => {
   return (
     <>
-      <div className="flex flex-col p-3 rounded-lg h-full bg-[rgb(47,48,50)]  ">
+      <div
+        className={`flex flex-col p-3 rounded-lg h-full bg-[rgb(47,48,50)]  ${className}`}
+      >
         <div className="h-[250px] flex-shrink-0  w-full rounded-lg mb-5 skeleton"></div>
         <div className="flex flex-col h-full">
           <h3 className="h-4 mb-auto rounded-lg skeleton "></h3>

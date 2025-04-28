@@ -4,9 +4,12 @@ import { API, fetcher } from "../configAPI/configAPI";
 import { useEffect, useState } from "react";
 import { newUpdatev2API } from "../configAPI/newUpdate";
 import MovieCardFilm from "../components/movie/MovieCardFilm";
+import LoadingSkeleton from "../components/loading/LoadingSkeleton";
+import { v4 } from "uuid";
 // import { useEffect, useState } from "react";
 // import { movieAPI } from "../configAPI/movie";
 
+const itemPerPage = 6;
 const MoviePageDetail = () => {
   // const location = useLocation();
   // const [isLoading, setIsLoading] = useState(false);
@@ -160,12 +163,25 @@ function MovieMeta({ type }) {
     if (type === "similar") {
       return (
         <div className="w-full">
-          <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
-            {movies.length > 0 &&
-              movies.map((item) => (
-                <MovieCardFilm item={item} key={item.id}></MovieCardFilm>
+          {isLoading && (
+            <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
+              {new Array(itemPerPage).fill(0).map(() => (
+                <LoadingSkeleton
+                  className="w-[250px] flex-shrink-0"
+                  key={v4()}
+                ></LoadingSkeleton>
               ))}
-          </div>
+            </div>
+          )}
+
+          {!isLoading && (
+            <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
+              {movies.length > 0 &&
+                movies.map((item) => (
+                  <MovieCardFilm item={item} key={item.id}></MovieCardFilm>
+                ))}
+            </div>
+          )}
         </div>
       );
     }

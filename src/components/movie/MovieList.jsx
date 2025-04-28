@@ -41,7 +41,12 @@ const MovieList = ({ type = "v1" }) => {
 
   return (
     <div className="movie-list">
-      <Swiper grabCursor={"true"} spaceBetween={20} slidesPerView={"auto"}>
+      <Swiper
+        grabCursor={"true"}
+        spaceBetween={20}
+        slidesPerView={"auto"}
+        className="homeSwiper"
+      >
         {isLoading &&
           new Array(itemPerPage).fill(0).map(() => (
             <SwiperSlide key={v4()}>

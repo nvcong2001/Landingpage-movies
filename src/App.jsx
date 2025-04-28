@@ -1,13 +1,12 @@
 import { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-// import Banner from "./components/banner/Banner";
 import Main from "./layouts/Main";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 const TVPage = lazy(() => import("./pages/TVPage"));
 const TVDetail = lazy(() => import("./pages/TVDetail"));
-const MoviePage = lazy(() => import("./pages/MoviePage"));
+// const MoviePage = lazy(() => import("./pages/MoviePage"));
 const SeriesPage = lazy(() => import("./pages/SeriesPage"));
 const NonSeriesPage = lazy(() => import("./pages/NonSeriesPage"));
 const AnimePage = lazy(() => import("./pages/AnimePage"));
@@ -24,24 +23,35 @@ const App = () => {
             path="/"
             element={
               <>
-                {/* <Banner></Banner> */}
                 <HomePage></HomePage>
               </>
             }
           ></Route>
+
           <Route path="/tv-shows" element={<TVPage></TVPage>}></Route>
-          <Route
+
+          {/* <Route
             path="/tv-shows/detail/:id"
             element={<TVDetail></TVDetail>}
-          ></Route>
+          ></Route> */}
 
           <Route path="/phim-bo" element={<SeriesPage></SeriesPage>}></Route>
-          <Route
+
+          {/* <Route
             path="/phim-bo/detail/:id"
+            element={<MoviePageDetail></MoviePageDetail>}
+          ></Route> */}
+
+          <Route
+            path="/movie/detail/:id"
             element={<MoviePageDetail></MoviePageDetail>}
           ></Route>
 
-          <Route path="/phim-le" element={<NonSeriesPage></NonSeriesPage>}></Route>
+          <Route
+            path="/phim-le"
+            element={<NonSeriesPage></NonSeriesPage>}
+          ></Route>
+
           <Route path="/hoat-hinh" element={<AnimePage></AnimePage>}></Route>
 
           <Route

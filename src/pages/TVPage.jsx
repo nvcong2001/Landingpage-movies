@@ -18,13 +18,12 @@ const TVPage = () => {
   // const debounceValue = useDebounceQuery(query, 500);
   const location = useLocation();
   const [isLoading, setIsloading] = useState(false);
-  const [movies, setMovies] = useState([]); 
+  const [movies, setMovies] = useState([]);
 
   const fetchDataTVShow = async () => {
     setIsloading(true);
     try {
       const response = await movieTotalAPI(location.pathname);
-      console.log(response.data.data.items);
       setMovies(response.data.data.items);
     } catch (error) {
       console.log(error);
@@ -66,7 +65,7 @@ const TVPage = () => {
         if (input) input.blur();
       }
     };
-    
+
     document.addEventListener("click", handleClickInput);
     return () => document.removeEventListener("click", handleClickInput);
   }, []);

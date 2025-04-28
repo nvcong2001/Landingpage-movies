@@ -15,7 +15,6 @@ const SeriesPage = () => {
     setIsloading(true);
     try {
       const response = await movieTotalAPI(location.pathname);
-      console.log(response.data.data.items);
       setMovies(response.data.data.items);
     } catch (error) {
       console.log(error);

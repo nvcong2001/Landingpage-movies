@@ -18,7 +18,7 @@ const NonSeriesCard = ({ item }) => {
             <span>{item.time}</span>
           </div>
         </div>
-        <Button to={`/phim/detail/${item.id}`}>Xem ngay</Button>
+        <Button to={`/phim/${item.slug}`}>Xem ngay</Button>
       </div>
     </div>
   );

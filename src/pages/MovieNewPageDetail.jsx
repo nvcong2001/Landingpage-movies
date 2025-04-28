@@ -5,7 +5,11 @@ import { movieAPI } from "../configAPI/movie";
 import Button from "../components/button/Button";
 import { newUpdatev1API } from "../configAPI/newUpdate";
 import MovieCardFilm from "../components/movie/MovieCardFilm";
+import LoadingSkeleton from "../components/loading/LoadingSkeleton";
+import { v4 } from "uuid";
+import LoadingSquareSkeleton from "../components/loading/LoadingSquareSkeleton";
 
+const itemPerPage = 6;
 const MovieNewPageDetail = () => {
   const params = useParams();
   const [isLoading, setIsLoading] = useState(false);
@@ -18,7 +22,6 @@ const MovieNewPageDetail = () => {
       const response = await movieAPI(params.id);
       setMovie(response.data.movie);
       setEpisodess(response.data.episodes);
-      console.log(response.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -32,7 +35,22 @@ const MovieNewPageDetail = () => {
 
   return (
     <>
-      {isLoading && <p>No data</p>}
+      {isLoading && (
+        <div className="mt-5">
+          <div className="grid grid-cols-2 gap-3 mb-40">
+            <div className="flex flex-col items-start gap-3">
+              <LoadingSquareSkeleton className="h-[35px] rounded-lg w-full" />
+              <LoadingSquareSkeleton className="h-[15px] rounded-lg w-full" />
+              <LoadingSquareSkeleton className="h-[15px] mt-2 rounded-lg w-full" />
+              <LoadingSquareSkeleton className="h-[150px] rounded-lg w-full" />
+              <LoadingSquareSkeleton className="h-[50px] mt-4 rounded-lg w-[100px]" />
+              <LoadingSquareSkeleton className="h-[50px]  rounded-lg w-[100px]" />
+              <LoadingSquareSkeleton className="h-[70px] rounded-lg w-full mt-auto" />
+            </div>
+            <LoadingSquareSkeleton className="h-[550px] rounded-lg w-full" />
+          </div>
+        </div>
+      )}
       {!isLoading && (
         <div className="mt-5">
           <div className="grid grid-cols-2 gap-3 mb-40">
@@ -42,10 +60,17 @@ const MovieNewPageDetail = () => {
               </h1>
               <h4 className="mb-3 text-lg">{movie.name}</h4>
               <div className="flex items-center gap-2">
-                {movie?.tmdb?.vote_average && (
+                {Number(movie?.tmdb?.vote_average) > 0 && (
                   <div className="flex items-center gap-1 text-contentSecond">
                     <i className="text-yellow-500 bx bxs-star" />
                     <span>{Number(movie?.tmdb?.vote_average).toFixed(2)} </span>
+                  </div>
+                )}
+
+                {Number(movie?.tmdb?.vote_average) === 0 && (
+                  <div className="flex items-center gap-1 text-contentSecond">
+                    <i className="text-yellow-500 bx bxs-star" />
+                    <span>0</span>
                   </div>
                 )}
                 <div className="flex items-center gap-2 text-contentSecond">
@@ -123,7 +148,7 @@ const MovieNewPageDetail = () => {
               {movie.thumb_url !== null && (
                 <div className="absolute inset-0 bg-center bg-no-repeat bg-cover">
                   <img
-                    src={`${movie.thumb_url}`}
+                    src={`${movie.thumb_url || movie.poster_url}`}
                     className="object-cover w-full h-full rounded-lg"
                     alt=""
                   />
@@ -164,12 +189,25 @@ function MovieMeta() {
 
   return (
     <div className="w-full">
-      <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
-        {movies.length > 0 &&
-          movies.map((item) => (
-            <MovieCardFilm item={item} key={item.id}></MovieCardFilm>
+      {isLoading && (
+        <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
+          {new Array(itemPerPage).fill(0).map(() => (
+            <LoadingSkeleton
+              className="w-[250px] flex-shrink-0"
+              key={v4()}
+            ></LoadingSkeleton>
           ))}
-      </div>
+        </div>
+      )}
+
+      {!isLoading && (
+        <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
+          {movies.length > 0 &&
+            movies.map((item) => (
+              <MovieCardFilm item={item} key={item.id}></MovieCardFilm>
+            ))}
+        </div>
+      )}
     </div>
   );
 }
