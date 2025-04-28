@@ -1,8 +1,8 @@
 import Button from "../button/Button";
 
-const MovieCardTest = ({ item }) => {
+const SeriesCard = ({ item }) => {
   return (
-    <div className="flex flex-col p-3 rounded-lg movie-card bg-[rgb(47,48,50)]  ">
+    <div className="flex flex-col p-3 rounded-lg h-full bg-[rgb(47,48,50)]  ">
       <img
         src={`https://phimimg.com/${item.poster_url}`}
         className="h-[250px] object-cover w-full rounded-lg mb-5"
@@ -18,10 +18,10 @@ const MovieCardTest = ({ item }) => {
             <span>{item.time}</span>
           </div>
         </div>
-        <Button to={`/phim/${item.slug}`}>Xem ngay</Button>
+        <Button to={`/phim/detail/${item.id}`}>Xem ngay</Button>
       </div>
     </div>
   );
 };
 
-export default MovieCardTest;
+export default SeriesCard;

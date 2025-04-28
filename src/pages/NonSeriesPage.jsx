@@ -1,26 +1,17 @@
 import { useEffect, useState } from "react";
-// import { API, fetcher } from "../configAPI/configAPI";
-// import MovieCard from "../components/movie/MovieCard";
-// import Button from "../components/button/Button";
-// import useDebounceQuery from "../hooks/useDebounceQuery";
-// import useSWRInfinite from "swr/infinite";
+import NonSeriesCard from "../components/movie/NonSeriesCard";
 import LoadingSkeleton from "../components/loading/LoadingSkeleton";
-import { v4 } from "uuid";
 import { useLocation } from "react-router-dom";
+import { v4 } from "uuid";
 import { movieTotalAPI } from "../configAPI/movieTotal";
-import TVCard from "../components/movie/TVCard";
 
 const itemPerPage = 20;
-const TVPage = () => {
-  // const [query, setQuery] = useState("");
-  // const [pageDefault, setPageDefault] = useState(1);
-  // const [url, setUrl] = useState(API.getTVList(pageDefault));
-  // const debounceValue = useDebounceQuery(query, 500);
+const NonSeriesPage = () => {
   const location = useLocation();
   const [isLoading, setIsloading] = useState(false);
-  const [movies, setMovies] = useState([]); 
+  const [movies, setMovies] = useState([]);
 
-  const fetchDataTVShow = async () => {
+  const fetchDataMovie = async () => {
     setIsloading(true);
     try {
       const response = await movieTotalAPI(location.pathname);
@@ -33,30 +24,6 @@ const TVPage = () => {
     }
   };
 
-  // const { data, error, size, setSize } = useSWRInfinite((index) => {
-  //   return url.replace("page=1", `page=${index + 1}`);
-  // }, fetcher);
-
-  // const handleChangeQuery = (e) => {
-  //   setQuery(e.target.value);
-  // };
-
-  // let movies = data ? data.reduce((a, b) => a.concat(b.results), []) : [];
-  // let loading = !data && !error;
-  // let lastPage = data && data[data.length - 1].results.length;
-  // let isReachingEnd = lastPage < itemPerPage;
-  // const handleSearch = () => {
-  //   if (query) {
-  //     setUrl(API.getSearchTV(query, pageDefault));
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (debounceValue == "") {
-  //     setUrl(API.getTVList(pageDefault));
-  //   }
-  // }, [pageDefault, debounceValue]);
-
   useEffect(() => {
     const handleClickInput = (e) => {
       if (e.target.matches(".input-search")) {
@@ -66,13 +33,12 @@ const TVPage = () => {
         if (input) input.blur();
       }
     };
-    
     document.addEventListener("click", handleClickInput);
     return () => document.removeEventListener("click", handleClickInput);
   }, []);
 
   useEffect(() => {
-    fetchDataTVShow();
+    fetchDataMovie();
   }, []);
 
   return (
@@ -82,7 +48,7 @@ const TVPage = () => {
           <div className="w-full p-4 bg-[#2f3032]">
             <input
               type="text"
-              className="w-full input-search outline-none bg-transparent placeholder:text-[15px]"
+              className="input-search w-full outline-none bg-transparent placeholder:text-[15px]"
               placeholder="Type here to search..."
               // value={query}
               // onChange={handleChangeQuery}
@@ -90,31 +56,31 @@ const TVPage = () => {
           </div>
           <button
             className="px-5 py-4 transition-all bg-primary hover:opacity-80"
-            // onClick={handleSearch}
+            //onClick={handleSearch}
           >
             <i className="text-[16px] bx bx-search"></i>
           </button>
         </div>
 
         {isLoading && (
-          <div className="grid grid-cols-4 gap-5">
+          <div className="grid grid-cols-4 gap-5 ">
             {new Array(itemPerPage).fill(0).map(() => (
               <LoadingSkeleton key={v4()}></LoadingSkeleton>
             ))}
           </div>
         )}
         {!isLoading && (
-          <div className="grid grid-cols-4 gap-5">
-            {movies?.length > 0 &&
+          <div className="grid grid-cols-4 gap-5 ">
+            {movies.length > 0 &&
               movies.map((item) => (
                 <div key={item.id}>
-                  <TVCard item={item}></TVCard>
+                  <NonSeriesCard item={item} check="movie"></NonSeriesCard>
                 </div>
               ))}
           </div>
         )}
         {/* <Button
-          className="max-w-[150px] mx-auto mt-10"
+          className="max-w-[160px] mx-auto mt-10"
           onClick={() => setSize(size + 1)}
           disabled={isReachingEnd}
         >
@@ -125,4 +91,4 @@ const TVPage = () => {
   );
 };
 
-export default TVPage;
+export default NonSeriesPage;

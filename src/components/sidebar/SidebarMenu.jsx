@@ -21,7 +21,7 @@ const SidebarMenu = () => {
           TV Shows
         </NavLink>
         <NavLink
-          to="/movie"
+          to="/phim-bo"
           className={({ isActive }) => (isActive ? "text-primary" : "")}
         >
           <i className="pr-3 text-lg bx bx-movie"></i>
