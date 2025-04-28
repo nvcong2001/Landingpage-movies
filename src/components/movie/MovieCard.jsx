@@ -2,7 +2,9 @@ import Button from "../button/Button";
 
 const MovieCard = ({ item }) => {
   return (
-    <div className="flex flex-col p-3 rounded-lg movie-card bg-[rgb(47,48,50)]  ">
+    <div
+      className={`flex flex-col p-3 rounded-lg movie-card bg-[rgb(47,48,50)] w-60`}
+    >
       <img
         src={item.poster_url}
         className="h-[250px] object-cover w-full rounded-lg mb-5 flex-shrink-0"
