@@ -10,7 +10,7 @@ const Banner = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="banner pt-[75px] absolute left-0 right-0 h-[500px] page-container overflow-hidden">
+    <section className="banner pt-[50px] md:pt-[75px] absolute left-0 right-0 h-[500px] page-container overflow-hidden">
       <Swiper
         grabCursor={"true"}
         slidersPerView={"auto"}
@@ -21,28 +21,31 @@ const Banner = () => {
             <SwiperSlide key={item.id} className="p-5">
               <div className="relative grid h-full grid-cols-2 gap-5 banner-wrapper">
                 <div className="">
-                  <h2 className="mb-3 text-3xl font-bold text-white">
+                  <h2 className="mb-3 font-bold text-white xs:text-xl md:text-3xl">
                     {item.title}
                   </h2>
 
-                  <p className="text-gray-300">{item.overview}</p>
-
-                  <span className="text-gray-200 ">
-                    Lượt đánh giá:
-                    <span className="text-yellow-400">
-                      <i className="ml-2 mr-1 text-yellow-500 bx bxs-star"></i>
-                      <span className="text-gray-400">
-                        {Number(item.vote_average).toFixed(2)}
+                  <p className="text-gray-300 text-fiveLine ">
+                    {item.overview}
+                  </p>
+                  <div className="flex flex-col gap-1 md:flex-row ">
+                    <span className="mt-2 text-gray-200">
+                      Lượt đánh giá:
+                      <span className="text-sm text-yellow-400 md:text-base">
+                        <i className="ml-2 mr-1 text-yellow-500 bx bxs-star"></i>
+                        <span className="text-gray-400">
+                          {Number(item.vote_average).toFixed(2)}
+                        </span>
                       </span>
                     </span>
-                  </span>
 
-                  <span className="ml-3 text-gray-400">
-                    Phát hành: {item.release_date}
-                  </span>
+                    <span className="text-sm text-gray-400 md:text-base">
+                      Phát hành: {item.release_date}
+                    </span>
+                  </div>
 
                   <Button
-                    className="flex items-center gap-2 mt-6 text-white w-max "
+                    className="flex items-center gap-2 mt-6 text-sm text-white md:px-6 md:text-base w-max "
                     onClick={() => navigate(`/movie/detail/${item.id}`)}
                   >
                     <i className="text-xl bx bx-play-circle"></i>
@@ -66,7 +69,7 @@ function BannerItem({ item }) {
       <img
         src={API.getImage(poster_path)}
         alt=""
-        className="object-cover w-full h-full "
+        className="object-cover xs:h-[350px] w-full md:h-full "
       />
     </div>
   );

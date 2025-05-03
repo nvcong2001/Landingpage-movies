@@ -54,17 +54,19 @@ const MoviePlayDetail = () => {
 
   return (
     <div>
-      <div className="flex mb-5 md:mt-5 items-center gap-2 text-sm font-bold text-[#ff9641]">
+      <div className="flex  mb-5 md:mt-5 items-center gap-2 text-sm font-bold text-[#ff9641]">
         <span className="flex items-center gap-2">
           <i className="bx bxs-home"></i>
-          <span>Xem Phim</span>
+          <span className="text-xs md:text-sm">Xem Phim</span>
         </span>
         {!isLoading && (
           <>
-            <span> / </span>
-            <span>{movie.name}</span>
-            <span> / </span>
-            <span className="text-white">{part || "Full"}</span>
+            <span className="text-xs md:text-sm"> / </span>
+            <span className="text-xs md:text-sm">{movie.name}</span>
+            <span className="text-xs md:text-sm"> / </span>
+            <span className="text-xs text-white md:text-sm">
+              {part || "Full"}
+            </span>
           </>
         )}
       </div>
@@ -94,7 +96,7 @@ const MoviePlayDetail = () => {
             {episodess.length > 0 &&
               episodess.map((endpoint) => (
                 <div key={endpoint.server_name}>
-                  <span className="inline-block mb-2 text-base font-bold">
+                  <span className="inline-block my-2 text-base font-bold">
                     {endpoint.server_name}
                   </span>
                   <div

@@ -5,7 +5,7 @@ import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
 
 const TVPage = lazy(() => import("./pages/TVPage"));
-const TVDetail = lazy(() => import("./pages/TVDetail"));
+// const TVDetail = lazy(() => import("./pages/TVDetail"));
 // const MoviePage = lazy(() => import("./pages/MoviePage"));
 const SeriesPage = lazy(() => import("./pages/SeriesPage"));
 const NonSeriesPage = lazy(() => import("./pages/NonSeriesPage"));

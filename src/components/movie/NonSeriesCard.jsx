@@ -5,7 +5,7 @@ const NonSeriesCard = ({ item }) => {
     <div className="flex flex-col p-3 rounded-lg h-full bg-[rgb(47,48,50)]  ">
       <img
         src={`https://phimimg.com/${item.poster_url}`}
-        className="h-[250px] object-cover w-full rounded-lg mb-5"
+        className="h-[150px] md:h-[250px] object-cover w-full rounded-lg mb-5"
         alt=""
       />
       <div className="flex flex-col h-full">
