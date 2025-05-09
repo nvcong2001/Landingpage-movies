@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "./layouts/Main";
 import HomePage from "./pages/HomePage";
 import NotFoundPage from "./pages/NotFoundPage";
+import Login from "./pages/Login";
 
 const TVPage = lazy(() => import("./pages/TVPage"));
 // const TVDetail = lazy(() => import("./pages/TVDetail"));
@@ -64,6 +65,8 @@ const App = () => {
             element={<MoviePlayDetail></MoviePlayDetail>}
           ></Route>
         </Route>
+
+        <Route path="/login" element={<Login></Login>}></Route>
         <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
       </Routes>
     </Suspense>
