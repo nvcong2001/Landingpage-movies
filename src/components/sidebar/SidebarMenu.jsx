@@ -54,6 +54,12 @@ const SidebarMenu = ({ show, onClose }) => {
         >
           Hoạt hình
         </NavLink>
+        <NavLink
+          to="/login"
+          className={({ isActive }) => (isActive ? "text-primary" : "")}
+        >
+          Đăng nhập
+        </NavLink>
       </nav>
     </div>
   );
