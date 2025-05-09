@@ -60,6 +60,12 @@ const SidebarMenu = ({ show, onClose }) => {
         >
           Đăng nhập
         </NavLink>
+        <NavLink
+          to="/signup"
+          className={({ isActive }) => (isActive ? "text-primary" : "")}
+        >
+          Đăng ký
+        </NavLink>
       </nav>
     </div>
   );

@@ -39,7 +39,7 @@ const Banner = () => {
                       </span>
                     </span>
 
-                    <span className="text-sm text-gray-400 md:text-base">
+                    <span className="text-sm text-gray-400 md:text-base p-2">
                       Phát hành: {item.release_date}
                     </span>
                   </div>

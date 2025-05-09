@@ -46,6 +46,12 @@ const Header = ({ setShowSidebar }) => {
           >
             Đăng nhập
           </NavLink>
+          <NavLink
+            to="/signup"
+            className={({ isActive }) => (isActive ? "text-primary" : "")}
+          >
+            Đăng ký
+          </NavLink>
         </div>
       </div>
       <div className="flex justify-end px-4 pt-2 ml-auto md:px-7 md:hidden">
