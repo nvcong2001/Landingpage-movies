@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import NonSeriesCard from "../components/movie/NonSeriesCard";
 import LoadingSkeleton from "../components/loading/LoadingSkeleton";
 import { useLocation } from "react-router-dom";
 import { v4 } from "uuid";
 import { movieTotalAPI, movieSearchAPI } from "../configAPI/movieTotal";
 import Button from "../components/button/Button";
 import useDebounceQuery from "../hooks/useDebounceQuery";
+import GeneralCard from "../components/movie/GeneralCard";
 
 const itemPerPage = 20;
 const NonSeriesPage = () => {
@@ -129,7 +129,7 @@ const NonSeriesPage = () => {
             {movies.length > 0 &&
               movies.map((item) => (
                 <div key={item.id + v4()}>
-                  <NonSeriesCard item={item} check="movie" />
+                  <GeneralCard item={item} check="movie" />
                 </div>
               ))}
           </div>

@@ -15,6 +15,9 @@ const AnimePage = lazy(() => import("./pages/AnimePage"));
 const MoviePageDetail = lazy(() => import("./pages/MoviePageDetail"));
 const MovieNewPageDetail = lazy(() => import("./pages/MovieNewPageDetail"));
 const MoviePlayDetail = lazy(() => import("./pages/MoviePlayDetail"));
+const CountryPage = lazy(() => import("./pages/CountryPage"));
+const CategoryPage = lazy(() => import("./pages/CategoryPage"));
+const SearchPage = lazy(() => import("./pages/SearchPage"));
 
 const App = () => {
   return (
@@ -65,6 +68,18 @@ const App = () => {
             path="/phim/:idMovie/:id"
             element={<MoviePlayDetail></MoviePlayDetail>}
           ></Route>
+
+          <Route
+            path="/quoc-gia/:id"
+            element={<CountryPage></CountryPage>}
+          ></Route>
+
+          <Route
+            path="/the-loai/:id"
+            element={<CategoryPage></CategoryPage>}
+          ></Route>
+
+          <Route path="/tim-kiem" element={<SearchPage></SearchPage>}></Route>
         </Route>
 
         <Route path="/login" element={<Login></Login>}></Route>

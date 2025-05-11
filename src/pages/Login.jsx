@@ -61,8 +61,8 @@ const Login = () => {
 
           <p className="mt-8 text-gray-400 text-center text-sm">
             Bạn muốn sử dụng Movie World?{"  "}
-            <a href="#" className="text-white hover:underline">
-              Đăng ký ngay.
+            <a href="/signup" className="text-white hover:underline">
+              Đăng ký ngay
             </a>
           </p>
         </div>
