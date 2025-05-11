@@ -81,3 +81,7 @@ export const movieYearAPI = async (
       year ? `&year=${year}` : ""
     }&limit=${limit}`
   );
+
+export const countryAPI = async () => await axiosConfig.get("/quoc-gia");
+
+export const categoryAPI = async () => await axiosConfig.get("/the-loai");

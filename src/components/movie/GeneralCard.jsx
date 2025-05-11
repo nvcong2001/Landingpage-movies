@@ -1,11 +1,11 @@
 import Button from "../button/Button";
 
-const TVCard = ({ item }) => {
+const GeneralCard = ({ item }) => {
   return (
     <div className="flex flex-col p-3 rounded-lg h-full bg-[rgb(47,48,50)]  ">
       <img
         src={`https://phimimg.com/${item.poster_url}`}
-        className="h-[150px] md:h-[250px] flex-shrink-0 object-cover w-full rounded-lg mb-5"
+        className="h-[150px] md:h-[250px] object-cover w-full rounded-lg mb-5"
         alt=""
       />
       <div className="flex flex-col h-full">
@@ -24,4 +24,4 @@ const TVCard = ({ item }) => {
   );
 };
 
-export default TVCard;
+export default GeneralCard;

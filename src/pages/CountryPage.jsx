@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import LoadingSkeleton from "../components/loading/LoadingSkeleton";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { v4 } from "uuid";
-import { movieTotalAPI, movieSearchAPI } from "../configAPI/movieTotal";
+import { movieCountryAPI } from "../configAPI/movieTotal";
 import Button from "../components/button/Button";
 import useDebounceQuery from "../hooks/useDebounceQuery";
 import GeneralCard from "../components/movie/GeneralCard";
 
 const itemPerPage = 20;
 
-const AnimePage = () => {
-  const location = useLocation();
+const CountryPage = () => {
+  const params = useParams();
   const [query, setQuery] = useState("");
   const debounceValue = useDebounceQuery(query, 600);
   const [page, setPage] = useState(1);
@@ -21,7 +21,7 @@ const AnimePage = () => {
   const fetchDataMovie = async (currentPage = 1, isReset = false) => {
     setIsloading(true);
     try {
-      const response = await movieTotalAPI(location.pathname, currentPage);
+      const response = await movieCountryAPI(params.id, currentPage);
       const newItems = response.data.data.items;
       if (isReset) {
         setMovies(newItems);
@@ -38,21 +38,21 @@ const AnimePage = () => {
     }
   };
 
-  const fetchDataSearch = async (keyword, currentPage = 1) => {
-    setIsloading(true);
-    try {
-      const response = await movieSearchAPI(keyword, currentPage);
-      const newItems = response.data.data.items;
-      setMovies(newItems);
-      if (newItems.length < itemPerPage) {
-        setIsReachingEnd(true);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsloading(false);
-    }
-  };
+  // const fetchDataSearch = async (keyword, currentPage = 1) => {
+  //   setIsloading(true);
+  //   try {
+  //     const response = await movieSearchAPI(keyword, currentPage);
+  //     const newItems = response.data.data.items;
+  //     setMovies(newItems);
+  //     if (newItems.length < itemPerPage) {
+  //       setIsReachingEnd(true);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setIsloading(false);
+  //   }
+  // };
 
   const handleChangeQuery = (e) => {
     setQuery(e.target.value);
@@ -64,30 +64,30 @@ const AnimePage = () => {
     await fetchDataMovie(nextPage);
   };
 
-  useEffect(() => {
-    const searchMovie = async () => {
-      if (debounceValue.trim() === "") {
-        await fetchDataMovie(1, true);
-        setIsReachingEnd(false);
-        return;
-      }
-      await fetchDataSearch(debounceValue, 1);
-    };
-    searchMovie();
-  }, [debounceValue]);
+  // useEffect(() => {
+  //   const searchMovie = async () => {
+  //     if (debounceValue.trim() === "") {
+  //       await fetchDataMovie(1, true);
+  //       setIsReachingEnd(false);
+  //       return;
+  //     }
+  //     await fetchDataSearch(debounceValue, 1);
+  //   };
+  //   searchMovie();
+  // }, [debounceValue]);
 
-  useEffect(() => {
-    const handleClickInput = (e) => {
-      if (e.target.matches(".input-search")) {
-        e.target.focus();
-      } else {
-        const input = document.querySelector(".input-search");
-        if (input) input.blur();
-      }
-    };
-    document.addEventListener("click", handleClickInput);
-    return () => document.removeEventListener("click", handleClickInput);
-  }, []);
+  // useEffect(() => {
+  //   const handleClickInput = (e) => {
+  //     if (e.target.matches(".input-search")) {
+  //       e.target.focus();
+  //     } else {
+  //       const input = document.querySelector(".input-search");
+  //       if (input) input.blur();
+  //     }
+  //   };
+  //   document.addEventListener("click", handleClickInput);
+  //   return () => document.removeEventListener("click", handleClickInput);
+  // }, []);
 
   useEffect(() => {
     const resetAndFetch = async () => {
@@ -148,4 +148,4 @@ const AnimePage = () => {
   );
 };
 
-export default AnimePage;
+export default CountryPage;
