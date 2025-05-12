@@ -37,14 +37,15 @@ const Footer = () => {
               <div className="flex justify-center gap-4">
                 <NavLink to="/">Home</NavLink>
                 <NavLink to="/tv-shows">TV Shows</NavLink>
-                <NavLink to="/movies">Movies</NavLink>
-                <NavLink to="/actors">Actors</NavLink>
+                <NavLink to="/phim-bo">Phim Bộ</NavLink>
+                <NavLink to="/phim-le">Phim Lẻ</NavLink>
+                <NavLink to="/hoat-hinh">Hoạt Hình</NavLink>
               </div>
             </div>
             <div className="flex flex-col items-center justify-between md:flex-row">
               <p className="mb-3 text-sm md:mb-0">
-                2024 Movie World All Rights Reserved by{" "}
-                <span className="text-primary">Phan Dat</span>
+                2025 Movie World All Rights Reserved by{" "}
+                <span className="text-primary">Nguyen Cong</span>
               </p>
               <div className="flex items-center gap-4">
                 <i className="bx bxl-facebook-circle"></i>

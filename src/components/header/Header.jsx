@@ -113,7 +113,7 @@ const Header = ({ setShowSidebar }) => {
                   <NavLink
                     key={country.slug}
                     to={`/quoc-gia/${country.slug}`}
-                    className="w-1/3 content-center hover:bg-pink-400 hover:text-black text-white text-sm text-center rounded-md p-1"
+                    className="w-1/3 py-2 content-center hover:bg-pink-400 hover:text-black text-white text-sm text-center rounded-md p-1"
                     onClick={() => setShowCountryDropdown(false)}
                   >
                     {country.name}
@@ -137,7 +137,7 @@ const Header = ({ setShowSidebar }) => {
                   <NavLink
                     key={category.slug}
                     to={`/the-loai/${category.slug}`}
-                    className="w-1/3 content-center hover:bg-pink-400 hover:text-black text-white text-sm text-center rounded-md p-1"
+                    className="w-1/3 py-2 content-center hover:bg-pink-400 hover:text-black text-white text-sm text-center rounded-md p-1"
                     onClick={() => setShowCategoryDropdown(false)}
                   >
                     {category.name}
