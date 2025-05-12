@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import Button from "../button/Button";
 import { useNavigate } from "react-router-dom";
 import { API, fetcher } from "../../configAPI/configAPI";
+import { Autoplay } from "swiper/modules";
 
 const Banner = () => {
   const { data } = useSWR(API.getMovieList("upcoming"), fetcher);
@@ -14,7 +15,8 @@ const Banner = () => {
       <Swiper
         grabCursor={"true"}
         slidersPerView={"auto"}
-        className="swiper-banner"
+        modules={[Autoplay]} 
+        autoplay={{ delay: 3000, disableOnInteraction: false }} 
       >
         {movies.length > 0 &&
           movies.map((item) => (

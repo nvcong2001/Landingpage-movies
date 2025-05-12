@@ -39,7 +39,11 @@ const TVPage = () => {
     }
   };
 
-  const fetchDataTVSearch = async (keyword, currentPage = 1) => {
+  const fetchDataTVSearch = async (
+    keyword,
+
+    currentPage = 1
+  ) => {
     setIsloading(true);
     try {
       const response = await movieSearchAPI(keyword, currentPage);

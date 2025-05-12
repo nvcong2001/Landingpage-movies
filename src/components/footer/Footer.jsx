@@ -48,10 +48,10 @@ const Footer = () => {
                 <span className="text-primary">Nguyen Cong</span>
               </p>
               <div className="flex items-center gap-4">
-                <i className="bx bxl-facebook-circle"></i>
-                <i className="bx bxl-youtube"></i>
-                <i className="bx bxl-twitter"></i>
-                <i className="bx bxl-instagram-alt"></i>
+                <a href="https://www.facebook.com/traitim.sat.121/"><i className="bx bxl-facebook-circle"></i></a>
+                <a href="https://www.youtube.com/@nguyenvancong1176"><i className="bx bxl-youtube"></i></a>
+                <a href="https://x.com/CongnguyenShuu"><i className="bx bxl-twitter"></i></a>
+                <a href="https://www.instagram.com/shuu_shyb/"><i className="bx bxl-instagram-alt"></i></a>
               </div>
             </div>
           </div>
