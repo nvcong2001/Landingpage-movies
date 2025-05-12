@@ -1,6 +1,6 @@
 ## TimeLine
 
-- 14 days (18th Apr 2024 - 2th May 2024)
+- 5 months (4th Jan 2025 - 7th May 2025)
 
 ## TeamSize
 
@@ -29,7 +29,7 @@
 
 ## GuideLine
 
-- Clone project: `https://github.com/PhanThanhDat16/Landingpage-movies`
+- Clone project: `https://github.com/nvcong2001/Landingpage-movies.git`
 
 ### How to run app
 
@@ -45,4 +45,4 @@
 
 ## Author
 
-- Phan Dat
+- Nguyen Cong
