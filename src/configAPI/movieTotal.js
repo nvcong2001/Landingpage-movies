@@ -3,6 +3,8 @@ import { axiosConfig } from "./axiosConfig";
 export const movieTotalAPI = async (
   type_list = "phim-bo",
   page = 1,
+  sort_field = "modified.time",
+  sort_type = "desc",
   sort_lang = "vietsub",
   category = null,
   country = null,
@@ -10,7 +12,7 @@ export const movieTotalAPI = async (
   limit = 20
 ) =>
   await axiosConfig.get(
-    `/v1/api/danh-sach/${type_list}?page=${page}&sort_type=asc&sort_lang=${sort_lang}${
+    `/v1/api/danh-sach/${type_list}?page=${page}&sort_field=${sort_field}&sort_type=${sort_type}&sort_lang=${sort_lang}${
       category ? `&category=${category}` : ""
     }${country ? `&country=${country}` : ""}${
       year ? `&year=${year}` : ""
@@ -20,6 +22,8 @@ export const movieTotalAPI = async (
 export const movieSearchAPI = async (
   keyword,
   page = 1,
+  sort_field = "modified.time",
+  sort_type = "desc",
   sort_lang = "vietsub",
   category = null,
   country = null,
@@ -27,7 +31,7 @@ export const movieSearchAPI = async (
   limit = 20
 ) =>
   await axiosConfig.get(
-    `/v1/api/tim-kiem/?keyword=${keyword}&page=${page}&sort_type=asc&sort_lang=${sort_lang}${
+    `/v1/api/tim-kiem/?keyword=${keyword}&page=${page}&sort_field=${sort_field}&sort_type=${sort_type}&sort_lang=${sort_lang}${
       category ? `&category=${category}` : ""
     }${country ? `&country=${country}` : ""}${
       year ? `&year=${year}` : ""
@@ -37,13 +41,15 @@ export const movieSearchAPI = async (
 export const movieCategoryAPI = async (
   type_list,
   page = 1,
+  sort_field = "modified.time",
+  sort_type = "desc",
   sort_lang = "vietsub",
   country = null,
   year = null,
   limit = 20
 ) =>
   await axiosConfig.get(
-    `/v1/api/the-loai/${type_list}?page=${page}&sort_type=asc&sort_lang=${sort_lang}${
+    `/v1/api/the-loai/${type_list}?page=${page}&sort_field=${sort_field}&sort_type=${sort_type}&sort_lang=${sort_lang}${
       country ? `&country=${country}` : ""
     }${year ? `&year=${year}` : ""}&limit=${limit}`
   );
@@ -51,6 +57,8 @@ export const movieCategoryAPI = async (
 export const movieCountryAPI = async (
   type_list,
   page = 1,
+  sort_field = "modified.time",
+  sort_type = "desc",
   sort_lang = "vietsub",
   category = null,
   country = null,
@@ -58,7 +66,7 @@ export const movieCountryAPI = async (
   limit = 20
 ) =>
   await axiosConfig.get(
-    `/v1/api/quoc-gia/${type_list}?page=${page}&sort_type=asc&sort_lang=${sort_lang}${
+    `/v1/api/quoc-gia/${type_list}?page=${page}&sort_field=${sort_field}&sort_type=${sort_type}&sort_lang=${sort_lang}${
       category ? `&category=${category}` : ""
     }${country ? `&country=${country}` : ""}${
       year ? `&year=${year}` : ""
@@ -68,6 +76,8 @@ export const movieCountryAPI = async (
 export const movieYearAPI = async (
   type_list,
   page = 1,
+  sort_field = "modified.time",
+  sort_type = "desc",
   sort_lang = "vietsub",
   category = null,
   country = null,
@@ -75,7 +85,7 @@ export const movieYearAPI = async (
   limit = 20
 ) =>
   await axiosConfig.get(
-    `/v1/api/nam/${type_list}?page=${page}&sort_type=asc&sort_lang=${sort_lang}${
+    `/v1/api/nam/${type_list}?page=${page}&sort_field=${sort_field}&sort_type=${sort_type}&sort_lang=${sort_lang}${
       category ? `&category=${category}` : ""
     }${country ? `&country=${country}` : ""}${
       year ? `&year=${year}` : ""

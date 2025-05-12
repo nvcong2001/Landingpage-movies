@@ -5,11 +5,13 @@ const MovieCard = ({ item }) => {
     <div
       className={`flex flex-col p-3 rounded-lg h-full movie-card bg-[rgb(47,48,50)] w-60`}
     >
-      <img
-        src={item.poster_url}
-        className="h-[250px] object-cover w-full rounded-lg mb-5 flex-shrink-0"
-        alt=""
-      />
+      <div>
+        <img
+          src={item.poster_url}
+          className=" h-[250px] object-cover w-full rounded-lg mb-5 flex-shrink-0"
+          alt=""
+        />
+      </div>
       <div className="flex flex-col h-full">
         <h3 className="mb-auto text-[16px] font-bold text-white line-clamp-2">
           {item.name}
