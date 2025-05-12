@@ -10,9 +10,9 @@ const GeneralCard = ({ item }) => {
     const hours = Math.floor(diff / (1000 * 60 * 60));
     const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    if (minutes < 60) return `${minutes} phút`;
-    if (hours < 24) return `${hours} giờ`;
-    return `${days} ngày`;
+    if (minutes < 60) return `${minutes} phút trước`;
+    if (hours < 24) return `${hours} giờ trước`;
+    return `${days} ngày trước`;
   };
   return (
     <div className="flex flex-col p-3 rounded-lg h-full bg-[rgb(47,48,50)]  ">
@@ -22,7 +22,7 @@ const GeneralCard = ({ item }) => {
           className="h-[150px] md:h-[250px] object-cover w-full rounded-lg"
           alt=""
         />
-        <div className="absolute top-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">
+        <div className="absolute bottom-2 right-2 bg-black text-white text-xs px-2 py-1 rounded">
           {getRelativeTime(item.modified.time)}
         </div>
         <div className="absolute top-2 left-2 bg-black text-white text-xs px-2 py-1 rounded">
