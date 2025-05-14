@@ -27,12 +27,6 @@ const Signup = () => {
                 className="w-[155px] p-4 rounded bg-gray-700 text-white"
               />
             </div>
-            <select className="p-4 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500">
-              <option value="">Chọn giới tính</option>
-              <option value="nam">Nam</option>
-              <option value="nu">Nữ</option>
-              <option value="khong">Không muốn trả lời</option>
-            </select>
             <div className="flex gap-4">
               <input
                 type="number"
@@ -63,6 +57,11 @@ const Signup = () => {
             <input
               type="password"
               placeholder="Mật khẩu"
+              className="p-4 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
+            />
+            <input
+              type="password"
+              placeholder="Nhập lại mật khẩu"
               className="p-4 rounded bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-red-500"
             />
             <button

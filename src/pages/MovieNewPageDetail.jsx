@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-// import MovieCardTVSM from "../components/movie/MovieCardTVSM";
 import { useEffect, useState } from "react";
 import { movieAPI } from "../configAPI/movie";
 import Button from "../components/button/Button";
@@ -8,6 +7,7 @@ import MovieCardFilm from "../components/movie/MovieCardFilm";
 import LoadingSkeleton from "../components/loading/LoadingSkeleton";
 import { v4 } from "uuid";
 import LoadingSquareSkeleton from "../components/loading/LoadingSquareSkeleton";
+import { Swiper } from "swiper/react";
 
 const itemPerPage = 6;
 const MovieNewPageDetail = () => {
@@ -196,25 +196,27 @@ function MovieMeta() {
 
   return (
     <div className="w-full">
-      {isLoading && (
-        <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
-          {new Array(itemPerPage).fill(0).map(() => (
-            <LoadingSkeleton
-              className="w-[250px] flex-shrink-0"
-              key={v4()}
-            ></LoadingSkeleton>
-          ))}
-        </div>
-      )}
-
-      {!isLoading && (
-        <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
-          {movies.length > 0 &&
-            movies.map((item) => (
-              <MovieCardFilm item={item} key={item.id + v4()}></MovieCardFilm>
+      <Swiper>
+        {isLoading && (
+          <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
+            {new Array(itemPerPage).fill(0).map(() => (
+              <LoadingSkeleton
+                className="w-[250px] flex-shrink-0"
+                key={v4()}
+              ></LoadingSkeleton>
             ))}
-        </div>
-      )}
+          </div>
+        )}
+
+        {!isLoading && (
+          <div className="flex py-4 overflow-x-scroll scroll-box-x gap-x-5">
+            {movies.length > 0 &&
+              movies.map((item) => (
+                <MovieCardFilm item={item} key={item.id + v4()}></MovieCardFilm>
+              ))}
+          </div>
+        )}
+      </Swiper>
     </div>
   );
 }

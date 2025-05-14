@@ -1,7 +1,7 @@
 export const fetcher = (args) => fetch(args).then((res) => res.json());
 export const apiKey = "d949fb64e635f1e9a0f48b4ddbc5e9de";
 const endpointTV = "https://api.themoviedb.org/3/discover/tv";
-const endpointTVDetail = "https://api.themoviedb.org/3/tv";
+// const endpointTVDetail = "https://api.themoviedb.org/3/tv";
 const endpointTVMeta = "https://api.themoviedb.org/3/tv";
 
 const endpointMovie = "https://api.themoviedb.org/3/movie";

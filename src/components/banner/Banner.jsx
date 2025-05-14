@@ -15,8 +15,8 @@ const Banner = () => {
       <Swiper
         grabCursor={"true"}
         slidersPerView={"auto"}
-        modules={[Autoplay]} 
-        autoplay={{ delay: 3000, disableOnInteraction: false }} 
+        modules={[Autoplay]}
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
       >
         {movies.length > 0 &&
           movies.map((item) => (

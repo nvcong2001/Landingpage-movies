@@ -4,15 +4,13 @@ import { useParams } from "react-router-dom";
 import { v4 } from "uuid";
 import { movieCategoryAPI } from "../configAPI/movieTotal";
 import Button from "../components/button/Button";
-import useDebounceQuery from "../hooks/useDebounceQuery";
 import GeneralCard from "../components/movie/GeneralCard";
 
 const itemPerPage = 20;
 
 const CategoryPage = () => {
   const params = useParams();
-  const [query, setQuery] = useState("");
-  const debounceValue = useDebounceQuery(query, 600);
+  // const [query, setQuery] = useState("");
   const [page, setPage] = useState(1);
   const [isReachingEnd, setIsReachingEnd] = useState(false);
   const [isLoading, setIsloading] = useState(false);
@@ -39,9 +37,9 @@ const CategoryPage = () => {
     }
   };
 
-  const handleChangeQuery = (e) => {
-    setQuery(e.target.value);
-  };
+  // const handleChangeQuery = (e) => {
+  //   setQuery(e.target.value);
+  // };
 
   const handleLoadMore = async () => {
     const nextPage = page + 1;
@@ -62,7 +60,7 @@ const CategoryPage = () => {
   return (
     <div>
       <div className="container pb-9">
-        <div className="flex items-center mt-10 mb-10 ">
+        {/* <div className="flex items-center mt-10 mb-10 ">
           <div className="w-full p-4 bg-[#2f3032]">
             <input
               type="text"
@@ -75,10 +73,10 @@ const CategoryPage = () => {
           <button className="px-5 py-4 transition-all bg-primary hover:opacity-80">
             <i className="text-[16px] bx bx-search"></i>
           </button>
-        </div>
+        </div> */}
 
         {isLoading && (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
             {new Array(itemPerPage).fill(0).map(() => (
               <LoadingSkeleton key={v4()} />
             ))}
@@ -86,7 +84,7 @@ const CategoryPage = () => {
         )}
 
         {!isLoading && (
-          <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
             {movies.length > 0 &&
               movies.map((item) => (
                 <div key={item.id}>

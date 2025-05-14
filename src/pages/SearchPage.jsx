@@ -55,7 +55,8 @@ const SearchPage = () => {
   return (
     <div className="container pb-9 mt-10">
       <h2 className="text-xl font-bold mb-6">
-        Kết quả tìm kiếm cho: "<span className="text-primary">{keyword}</span>"
+        Kết quả tìm kiếm cho: &quot;
+        <span className="text-primary">{keyword}</span>&quot;
       </h2>
 
       {isLoading && (

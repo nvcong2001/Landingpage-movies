@@ -5,8 +5,6 @@ import { useEffect, useState, useRef } from "react";
 import { categoryAPI, countryAPI } from "../../configAPI/movieTotal";
 
 const SidebarMenu = ({ show, onClose }) => {
-  const [isLoading, setIsloading] = useState(false);
-
   const [countries, setCountries] = useState([]);
   const [showCountryDropdown, setShowCountryDropdown] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -15,17 +13,14 @@ const SidebarMenu = ({ show, onClose }) => {
   const countryRef = useRef(null);
   const categoryRef = useRef(null);
 
-  const fetchData = async (currentPage = 1, isReset = false) => {
-    setIsloading(true);
+  const fetchData = async () => {
     try {
       const responseCountry = await countryAPI();
-      setCountries(responseCountry.data);
+      setCountries(responseCountry.data.slice(0, -2));
       const responseCategory = await categoryAPI();
       setCategories(responseCategory.data);
     } catch (error) {
       console.log(error);
-    } finally {
-      setIsloading(false);
     }
   };
 
@@ -54,7 +49,7 @@ const SidebarMenu = ({ show, onClose }) => {
     <div
       className={`fixed top-0 left-0 w-[250px] h-full z-[1000] bg-[#181818] text-white transition-transform duration-300 ease-in-out transform ${
         show ? "translate-x-0" : "-translate-x-full"
-      } md:hidden overflow-y-auto`}
+      } md:hidden overflow-auto pb-16`}
     >
       <div className="flex justify-end p-4">
         <button onClick={onClose}>

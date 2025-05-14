@@ -2,6 +2,8 @@ import { NavLink, useNavigate } from "react-router-dom";
 import Logo from "../logo/Logo";
 import { useEffect, useState, useRef } from "react";
 import { categoryAPI, countryAPI } from "../../configAPI/movieTotal";
+import useDebounceQuery from "../../hooks/useDebounceQuery";
+import { movieSearchAPI } from "../../configAPI/movieTotal";
 
 const Header = ({ setShowSidebar }) => {
   const [showSearch, setShowSearch] = useState(false);
@@ -16,6 +18,29 @@ const Header = ({ setShowSidebar }) => {
   const countryRef = useRef(null);
   const categoryRef = useRef(null);
   const searchMobileRef = useRef(null);
+
+  // ****
+  const debounceValue = useDebounceQuery(query, 600); // 500ms debounce
+  const [searchResults, setSearchResults] = useState([]);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  useEffect(() => {
+    const fetchSearch = async () => {
+      if (!debounceValue.trim()) {
+        setSearchResults([]);
+        setShowSearchResults(false);
+        return;
+      }
+      try {
+        const res = await movieSearchAPI(debounceValue.trim());
+        setSearchResults(res.data.data.items || []);
+        setShowSearchResults(true);
+      } catch (error) {
+        console.error("Search error:", error);
+      }
+    };
+    fetchSearch();
+  }, [debounceValue]);
+  //*** */
 
   const handleChangeQuery = (e) => setQuery(e.target.value);
 
@@ -151,17 +176,41 @@ const Header = ({ setShowSidebar }) => {
         {/* Desktop Search */}
         <div className="hidden md:flex pl-8 gap-[20px] text-base font-semibold relative items-center">
           <div className="relative">
-            <i className="bx bx-search-alt-2 text-stone-800 absolute left-3 top-1/2 -translate-y-1/2 text-2xl"></i>
+            <i className="bx bx-search-alt-2 text-white absolute left-3 top-1/2 -translate-y-1/2 text-2xl"></i>
             <input
               type="text"
               name="keyword"
-              className="focus:ring-2 focus:ring-blue-500 focus:outline-none text-base text-black rounded-full py-2 pl-10 pr-5 font-semibold"
+              className="ring-stone-100 ring-2 focus:outline-none text-base text-white bg-black rounded-full py-2 pl-10 pr-5 font-semibold"
               aria-label="Tìm kiếm phim"
               placeholder="Tìm kiếm phim..."
               value={query}
               onChange={handleChangeQuery}
               onKeyDown={handleKeyDown}
             />
+            {showSearchResults && searchResults.length > 0 && (
+              <div className="absolute border top-full -left-20 -right-20 z-50 rounded-md mt-2 max-h-[350px] overflow-y-auto">
+                {searchResults.map((movie) => (
+                  <NavLink
+                    key={movie._id || movie.id}
+                    to={`/phim/${movie.slug}`}
+                    className="block text-base text-white"
+                    onClick={() => {
+                      setQuery("");
+                      setShowSearchResults(false);
+                    }}
+                  >
+                    <div className="flex p-2 items-center gap-3 hover:bg-gray-200 hover:text-black bg-black text-base">
+                      <img
+                        src={`https://phimimg.com/${movie.thumb_url}`}
+                        alt={movie.name}
+                        className="w-10 h-14 object-cover rounded"
+                      />
+                      <span className="text-sm">{movie.name}</span>
+                    </div>
+                  </NavLink>
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
@@ -189,6 +238,30 @@ const Header = ({ setShowSidebar }) => {
               onChange={handleChangeQuery}
               onKeyDown={handleKeyDown}
             />
+            {showSearchResults && searchResults.length > 0 && (
+              <div className="absolute border top-full left-0 right-0 z-50 rounded-md mt-2 max-h-[350px] overflow-y-auto">
+                {searchResults.map((movie) => (
+                  <NavLink
+                    key={movie._id || movie.id}
+                    to={`/phim/${movie.slug}`}
+                    className="block text-base text-white"
+                    onClick={() => {
+                      setQuery("");
+                      setShowSearchResults(false);
+                    }}
+                  >
+                    <div className="flex p-2 -m-[1px] items-center gap-3 hover:bg-gray-200 hover:text-black bg-black text-base">
+                      <img
+                        src={`https://phimimg.com/${movie.thumb_url}`}
+                        alt={movie.name}
+                        className="w-10 h-14 object-cover rounded"
+                      />
+                      <span className="text-sm">{movie.name}</span>
+                    </div>
+                  </NavLink>
+                ))}
+              </div>
+            )}
           </div>
         )}
 

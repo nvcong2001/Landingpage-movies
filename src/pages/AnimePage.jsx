@@ -2,17 +2,17 @@ import { useEffect, useState } from "react";
 import LoadingSkeleton from "../components/loading/LoadingSkeleton";
 import { useLocation } from "react-router-dom";
 import { v4 } from "uuid";
-import { movieTotalAPI, movieSearchAPI } from "../configAPI/movieTotal";
+import { movieTotalAPI } from "../configAPI/movieTotal";
 import Button from "../components/button/Button";
-import useDebounceQuery from "../hooks/useDebounceQuery";
+// import useDebounceQuery from "../hooks/useDebounceQuery";
 import GeneralCard from "../components/movie/GeneralCard";
 
 const itemPerPage = 20;
 
 const AnimePage = () => {
   const location = useLocation();
-  const [query, setQuery] = useState("");
-  const debounceValue = useDebounceQuery(query, 600);
+  // const [query, setQuery] = useState("");
+  // const debounceValue = useDebounceQuery(query, 600);
   const [page, setPage] = useState(1);
   const [isReachingEnd, setIsReachingEnd] = useState(false);
   const [isLoading, setIsloading] = useState(false);
@@ -38,56 +38,11 @@ const AnimePage = () => {
     }
   };
 
-  const fetchDataSearch = async (keyword, currentPage = 1) => {
-    setIsloading(true);
-    try {
-      const response = await movieSearchAPI(keyword, currentPage);
-      const newItems = response.data.data.items;
-      setMovies(newItems);
-      if (newItems.length < itemPerPage) {
-        setIsReachingEnd(true);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setIsloading(false);
-    }
-  };
-
-  const handleChangeQuery = (e) => {
-    setQuery(e.target.value);
-  };
-
   const handleLoadMore = async () => {
     const nextPage = page + 1;
     setPage(nextPage);
     await fetchDataMovie(nextPage);
   };
-
-  useEffect(() => {
-    const searchMovie = async () => {
-      if (debounceValue.trim() === "") {
-        await fetchDataMovie(1, true);
-        setIsReachingEnd(false);
-        return;
-      }
-      await fetchDataSearch(debounceValue, 1);
-    };
-    searchMovie();
-  }, [debounceValue]);
-
-  useEffect(() => {
-    const handleClickInput = (e) => {
-      if (e.target.matches(".input-search")) {
-        e.target.focus();
-      } else {
-        const input = document.querySelector(".input-search");
-        if (input) input.blur();
-      }
-    };
-    document.addEventListener("click", handleClickInput);
-    return () => document.removeEventListener("click", handleClickInput);
-  }, []);
 
   useEffect(() => {
     const resetAndFetch = async () => {
@@ -99,9 +54,54 @@ const AnimePage = () => {
     resetAndFetch();
   }, [location.pathname]);
 
+  // const fetchDataSearch = async (keyword, currentPage = 1) => {
+  //   setIsloading(true);
+  //   try {
+  //     const response = await movieSearchAPI(keyword, currentPage);
+  //     const newItems = response.data.data.items;
+  //     setMovies(newItems);
+  //     if (newItems.length < itemPerPage) {
+  //       setIsReachingEnd(true);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   } finally {
+  //     setIsloading(false);
+  //   }
+  // };
+
+  // const handleChangeQuery = (e) => {
+  //   setQuery(e.target.value);
+  // };
+
+  // useEffect(() => {
+  //   const searchMovie = async () => {
+  //     if (debounceValue.trim() === "") {
+  //       await fetchDataMovie(1, true);
+  //       setIsReachingEnd(false);
+  //       return;
+  //     }
+  //     await fetchDataSearch(debounceValue, 1);
+  //   };
+  //   searchMovie();
+  // }, [debounceValue]);
+
+  // useEffect(() => {
+  //   const handleClickInput = (e) => {
+  //     if (e.target.matches(".input-search")) {
+  //       e.target.focus();
+  //     } else {
+  //       const input = document.querySelector(".input-search");
+  //       if (input) input.blur();
+  //     }
+  //   };
+  //   document.addEventListener("click", handleClickInput);
+  //   return () => document.removeEventListener("click", handleClickInput);
+  // }, []);
+
   return (
     <div className="container pb-9">
-      <div className="flex items-center mt-10 mb-10 ">
+      {/* <div className="flex items-center mt-10 mb-10 ">
         <div className="w-full p-4 bg-[#2f3032]">
           <input
             type="text"
@@ -114,10 +114,10 @@ const AnimePage = () => {
         <button className="px-5 py-4 transition-all bg-primary hover:opacity-80">
           <i className="text-[16px] bx bx-search"></i>
         </button>
-      </div>
+      </div> */}
 
       {isLoading && (
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+        <div className="mt-7 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
           {new Array(itemPerPage).fill(0).map(() => (
             <LoadingSkeleton key={v4()} />
           ))}
@@ -125,7 +125,7 @@ const AnimePage = () => {
       )}
 
       {!isLoading && (
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
+        <div className="mt-7 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
           {movies.length > 0 &&
             movies.map((item) => (
               <div key={item.id}>

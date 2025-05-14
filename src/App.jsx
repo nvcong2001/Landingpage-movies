@@ -7,8 +7,6 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 
 const TVPage = lazy(() => import("./pages/TVPage"));
-// const TVDetail = lazy(() => import("./pages/TVDetail"));
-// const MoviePage = lazy(() => import("./pages/MoviePage"));
 const SeriesPage = lazy(() => import("./pages/SeriesPage"));
 const NonSeriesPage = lazy(() => import("./pages/NonSeriesPage"));
 const AnimePage = lazy(() => import("./pages/AnimePage"));
@@ -33,24 +31,19 @@ const App = () => {
             }
           ></Route>
 
-          <Route path="/tv-shows" element={<TVPage></TVPage>}></Route>
-
-          {/* <Route
-            path="/tv-shows/detail/:id"
-            element={<TVDetail></TVDetail>}
-          ></Route> */}
-
-          <Route path="/phim-bo" element={<SeriesPage></SeriesPage>}></Route>
-
-          {/* <Route
-            path="/phim-bo/detail/:id"
-            element={<MoviePageDetail></MoviePageDetail>}
-          ></Route> */}
-
           <Route
             path="/movie/detail/:id"
             element={<MoviePageDetail></MoviePageDetail>}
           ></Route>
+
+          <Route
+            path="/phim/:id"
+            element={<MovieNewPageDetail></MovieNewPageDetail>}
+          ></Route>
+
+          <Route path="/tv-shows" element={<TVPage></TVPage>}></Route>
+
+          <Route path="/phim-bo" element={<SeriesPage></SeriesPage>}></Route>
 
           <Route
             path="/phim-le"
@@ -58,11 +51,6 @@ const App = () => {
           ></Route>
 
           <Route path="/hoat-hinh" element={<AnimePage></AnimePage>}></Route>
-
-          <Route
-            path="/phim/:id"
-            element={<MovieNewPageDetail></MovieNewPageDetail>}
-          ></Route>
 
           <Route
             path="/phim/:idMovie/:id"
