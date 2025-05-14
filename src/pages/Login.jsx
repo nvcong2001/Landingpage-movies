@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-import Signup from "./Signup";
 
 const Login = () => {
   return (
