@@ -1,4 +1,5 @@
-import React from "react";
+import { NavLink } from "react-router-dom";
+import Signup from "./Signup";
 
 const Login = () => {
   return (
@@ -61,9 +62,9 @@ const Login = () => {
 
           <p className="mt-8 text-gray-400 text-center text-sm">
             Bạn muốn sử dụng Movie World?{"  "}
-            <a href="/signup" className="text-white hover:underline">
+            <NavLink className="text-white hover:underline" to="/signup">
               Đăng ký ngay
-            </a>
+            </NavLink>
           </p>
         </div>
       </div>
