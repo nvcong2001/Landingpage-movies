@@ -21,8 +21,6 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        console.log("Current user:", user); // Debug logging
-
         // Process the photoURL to ensure it's usable
         let photoURL = user.photoURL;
 

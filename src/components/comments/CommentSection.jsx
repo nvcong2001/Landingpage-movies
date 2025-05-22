@@ -22,7 +22,14 @@ const CommentSection = ({ movieId, movieName }) => {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (!movieId) return;
+    // Reset comments and loading state when movieId changes
+    setComments([]);
+    setLoading(true);
+
+    if (!movieId) {
+      setLoading(false);
+      return;
+    }
 
     // Set up real-time listener for comments
     const commentsRef = collection(db, "comments");
@@ -41,7 +48,9 @@ const CommentSection = ({ movieId, movieName }) => {
       setLoading(false);
     });
 
-    return () => unsubscribe();
+    return () => {
+      unsubscribe();
+    };
   }, [movieId]);
 
   const handleSubmitComment = async (e) => {
@@ -54,7 +63,7 @@ const CommentSection = ({ movieId, movieName }) => {
     }
 
     try {
-      await addDoc(collection(db, "comments"), {
+      const commentData = {
         movieId,
         movieName,
         text: comment,
@@ -63,7 +72,11 @@ const CommentSection = ({ movieId, movieName }) => {
         userName: user.displayName || user.email.split("@")[0],
         userPhotoURL: user.photoURL,
         createdAt: serverTimestamp(),
-      });
+      };
+      console.log("Comment data:", commentData);
+
+      const docRef = await addDoc(collection(db, "comments"), commentData);
+      console.log("Comment added with ID:", docRef.id);
 
       setComment("");
       toast.success("Đã đăng bình luận!");
@@ -80,22 +93,26 @@ const CommentSection = ({ movieId, movieName }) => {
       await deleteDoc(doc(db, "comments", commentId));
       toast.success("Đã xóa bình luận!");
     } catch (error) {
-      console.error("Error deleting comment: ", error);
-      toast.error("Không thể xóa bình luận.");
+      toast.error("Không thể xóa bình luận.", error);
     }
   };
 
   const formatDate = (timestamp) => {
     if (!timestamp) return "";
 
-    const date = timestamp.toDate();
-    return new Intl.DateTimeFormat("vi-VN", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-      hour: "2-digit",
-      minute: "2-digit",
-    }).format(date);
+    try {
+      const date = timestamp.toDate();
+      return new Intl.DateTimeFormat("vi-VN", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+      }).format(date);
+    } catch (error) {
+      console.error("Error formatting date:", error);
+      return "";
+    }
   };
 
   return (
@@ -157,6 +174,12 @@ const CommentSection = ({ movieId, movieName }) => {
           </div>
         )}
       </div>
+
+      {/* Debug info for development */}
+      {/* <div className="mb-3 p-2 bg-gray-800 rounded text-xs text-gray-300">
+        <p>MovieID: {movieId}</p>
+        <p>Comments loaded: {comments.length}</p>
+      </div> */}
 
       {/* Comments list */}
       <div className="space-y-6">

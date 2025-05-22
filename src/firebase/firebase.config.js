@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, enableIndexedDbPersistence } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -11,6 +11,35 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+
+// Initialize Firebase
+let app;
+let db;
+let auth;
+
+try {
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+  
+  // Enable offline persistence
+  enableIndexedDbPersistence(db)
+    .then(() => {
+      console.log("Firestore persistence enabled successfully");
+    })
+    .catch((err) => {
+      if (err.code === 'failed-precondition') {
+        console.warn('Firestore persistence failed - multiple tabs open');
+      } else if (err.code === 'unimplemented') {
+        console.warn('Firestore persistence not supported by browser');
+      } else {
+        console.error('Firebase persistence error:', err);
+      }
+    });
+  
+  console.log("Firebase initialized successfully");
+} catch (error) {
+  console.error("Error initializing Firebase:", error);
+}
+
+export { auth, db };
