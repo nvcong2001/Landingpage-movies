@@ -124,8 +124,18 @@ export function AuthProvider({ children }) {
     return signOut(auth);
   };
 
-  const resetPassword = (email) => {
-    return sendPasswordResetEmail(auth, email);
+  const resetPassword = async (email) => {
+    try {
+      const actionCodeSettings = {
+        url: window.location.origin + "/login", // Redirect URL after password reset
+        handleCodeInApp: true,
+      };
+      await sendPasswordResetEmail(auth, email, actionCodeSettings);
+      return { success: true };
+    } catch (error) {
+      console.error("Error in password reset:", error);
+      throw error;
+    }
   };
 
   const value = {
