@@ -9,6 +9,8 @@ import {
   signInWithPopup,
   updateProfile,
   sendPasswordResetEmail,
+  verifyPasswordResetCode,
+  confirmPasswordReset,
 } from "firebase/auth";
 
 const AuthContext = createContext({});
@@ -127,13 +129,33 @@ export function AuthProvider({ children }) {
   const resetPassword = async (email) => {
     try {
       const actionCodeSettings = {
-        url: window.location.origin + "/login", // Redirect URL after password reset
+        url: window.location.origin + "/forgot-password", // Redirect to forgot password page
         handleCodeInApp: true,
       };
       await sendPasswordResetEmail(auth, email, actionCodeSettings);
       return { success: true };
     } catch (error) {
       console.error("Error in password reset:", error);
+      throw error;
+    }
+  };
+
+  const verifyResetCode = async (oobCode) => {
+    try {
+      const email = await verifyPasswordResetCode(auth, oobCode);
+      return { success: true, email };
+    } catch (error) {
+      console.error("Error verifying reset code:", error);
+      throw error;
+    }
+  };
+
+  const confirmResetPassword = async (oobCode, newPassword) => {
+    try {
+      await confirmPasswordReset(auth, oobCode, newPassword);
+      return { success: true };
+    } catch (error) {
+      console.error("Error confirming password reset:", error);
       throw error;
     }
   };
@@ -145,6 +167,8 @@ export function AuthProvider({ children }) {
     loginWithGoogle,
     logout,
     resetPassword,
+    verifyResetCode,
+    confirmResetPassword,
   };
 
   return (
